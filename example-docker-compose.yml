@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  frontend:
+    image: example/webapp
+    container_name: container_front
+    ports:
+      - 443:8043
+    command: npm run dev
+
+  backend:
+    container_name: container_backend
+    build: .
+    ports:
+      - 8080:8000
+    command: "./build/app_srv_tic"
+

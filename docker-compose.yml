@@ -1,0 +1,29 @@
+
+services:
+  server-1:
+    container_name: servidor_uno
+    build: .
+    ports:
+      - 8001:8000
+    command: "./build/app_srv_tic"
+
+  server-2:
+    container_name: servidor_dos
+    build: .
+    ports:
+      - 8002:8000
+    command: "./build/app_srv_tic"
+
+  server-3:
+    container_name: servidor_tres
+    build: .
+    ports:
+      - 8003:8000
+    command: "./build/app_srv_tic"
+
+  server-4:
+    container_name: servidor_cuatro
+    build: .
+    ports:
+      - 8004:8000
+    command: "./build/app_srv_tic"
