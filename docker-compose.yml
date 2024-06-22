@@ -1,29 +1,38 @@
+name: services_srv_tic
 
 services:
   server-1:
     container_name: servidor_uno
+    #image: infra_srv_tic_img:latest
     build: .
     ports:
       - 8001:8000
     command: "./build/app_srv_tic"
+    restart: always #para volver a levantar el servicio cuadno muere por alguna razon
 
   server-2:
     container_name: servidor_dos
+    #image: infra_srv_tic_img:latest
     build: .
     ports:
       - 8002:8000
     command: "./build/app_srv_tic"
+    restart: always #para volver a levantar el servicio cuadno muere por alguna razon
 
   server-3:
     container_name: servidor_tres
+    #image: infra_srv_tic_img:latest
     build: .
     ports:
       - 8003:8000
     command: "./build/app_srv_tic"
+    restart: always #para volver a levantar el servicio cuadno muere por alguna razon
 
   server-4:
     container_name: servidor_cuatro
+    #image: infra_srv_tic_img:latest
     build: .
     ports:
       - 8004:8000
     command: "./build/app_srv_tic"
+    restart: always #para volver a levantar el servicio cuadno muere por alguna razon

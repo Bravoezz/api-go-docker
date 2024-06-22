@@ -4,9 +4,12 @@ services:
   frontend:
     image: example/webapp
     container_name: container_front
+    depends_on:
+      - backend
     ports:
       - 443:8043
     command: npm run dev
+    restart: always         #para volver a levantar el servicio cuadno muere por alguna razon
 
   backend:
     container_name: container_backend
