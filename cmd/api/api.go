@@ -1,8 +1,8 @@
 package api
 
 import (
-	"database/sql"
-	"github.com/Bravoezz/infra_srv_tic/service"
+	"github.com/Bravoezz/infra_srv_tic/modules"
+	"github.com/jmoiron/sqlx"
 	"log"
 	"net/http"
 	"time"
@@ -10,10 +10,10 @@ import (
 
 type ApiServer struct {
 	address string
-	db      *sql.DB
+	db      *sqlx.DB
 }
 
-func NewApiServer(adrs string, db *sql.DB) *ApiServer {
+func NewApiServer(adrs string, db *sqlx.DB) *ApiServer {
 	return &ApiServer{adrs, db}
 }
 
@@ -31,7 +31,7 @@ func (s *ApiServer) Run() error {
 	})
 
 	//register routes in api/v1/*
-	service.RegisterRoutes(v1)
+	modules.RegisterRoutes(v1)
 
 	main := http.NewServeMux()
 	main.Handle("/api/v1/", http.StripPrefix("/api/v1", v1))
@@ -80,6 +80,6 @@ func ReqLoggerMiddleware(next http.Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()
 		next.ServeHTTP(w, r)
-		log.Printf("method: %s, path: %s, time: %s", r.Method, r.URL.Path, time.Since(start))
+		log.Printf("[REQUEST API] method: %s, path: %s, time: %s", r.Method, r.URL.Path, time.Since(start))
 	}
 }
